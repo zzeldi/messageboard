@@ -1,0 +1,37 @@
+<div class="card  m-2">
+
+  <div class="card-header"><h5>{{message.userName}} at ({{message.date | date:'dd/M/yyyy, hh:mm' }}) </h5></div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col border-dark">
+        {{message.message}}
+      </div>
+    </div>
+    <div *ngIf="message.comments.length > 0">
+      <hr/>
+      <div class="row" #comments>
+        <div class="col font-weight-bold h7">Comments:</div>
+      </div>
+      <div class="row" *ngFor="let comment of message.comments">
+        <div class="col "><b>{{comment.userName}}:</b> {{comment.commentText}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <form novalidate #commentForm="ngForm" (ngSubmit)="onSave()">
+      <div class="row">
+        <div class="col-9 col-sm-10 form-group">
+          <input id="newComment" class="form-control"
+                 placeholder="Comment" required maxlength="100"
+                 [ngClass]="{'border-danger':newComment.invalid && formError }"
+                 [(ngModel)]="newCommentText" name="newComment" #newComment="ngModel">
+
+        </div>
+        <div class="col-2 col-sm-1">
+          <button class="btn btn-primary" type="submit">Post</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

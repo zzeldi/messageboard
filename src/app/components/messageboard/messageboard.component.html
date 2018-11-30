@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="sticky-top">
+    <div class=" container-fluid card  ">
+      <div class="row justify-content-center">
+        <div class=" col-12 col-sm-6 align-self-center p-3">
+          <form class="needs-validation" #messageForm="ngForm" (ngSubmit)="onSave()">
+            <div class="row form-row">
+              <div class=" col-12 col-sm-3 ">
+                <input id="userName"  class="form-control "
+                       [ngClass]="{'border-danger':userName.invalid && (formError || userNameError)}"
+                       placeholder="User name" required
+                       [(ngModel)]="storedUsername"
+                       name="userName" #userName="ngModel">
+              </div>
+              <div class="col col-sm-9 ">
+            <textarea placeholder="New message" required
+                      [ngClass]="{'border-danger':message.invalid && formError }"
+                      class="form-control" maxlength="300" rows="1"
+                      [(ngModel)]="newMessage.message"
+                      name="message" #message="ngModel"></textarea>
+              </div>
+            </div>
+            <div class="row justify-content-between pt-2 pl-3 pr-3">
+              <button class="btn btn-secondary" type="button" (click)="onRefresh()">Refresh</button>
+              <button class="btn btn-primary" type="submit">Post
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <app-alert [errorMessage]="errorMessage"></app-alert>
+  </div>
+
+  <div class="row justify-content-center" *ngFor="let message of messages">
+    <div class="col-12 col-sm-6">
+      <app-message [message]="message" [userName]="storedUsername"
+                   (userNameMissing)="onUserNameMissingError()"></app-message>
+    </div>
+  </div>
+</div>
