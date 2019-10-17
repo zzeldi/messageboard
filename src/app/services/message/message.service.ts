@@ -22,7 +22,7 @@ export class MessageService {
    * @param message
    */
   saveNewMessage(message: Message): Observable<Message> {
-    return this.http.post<Message>(environment.SERVER_URL + '/api/message/' , message);
+    return this.http.post<Message>(environment.SERVER_URL + '/api/messages/' , message);
   }
 
 

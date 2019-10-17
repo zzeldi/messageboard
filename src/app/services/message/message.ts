@@ -8,13 +8,13 @@ export class Message {
   userName: string;
   date: Date;
   message: string;
-  comments: Comment[];
+  comments: Comment[] = [];
 
 
   constructor(json?: any) {
     if (json != null) {
       this.id = json.id;
-      this.userName = json.user_name;
+      this.userName = json.userName;
       if (json.date) {
         this.date = new Date(json.date);
       }
