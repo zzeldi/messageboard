@@ -10,8 +10,8 @@ export class Comment {
 
   constructor(json?: any) {
     if (json != null) {
-      this.id = json.id;
-      this.userName = json.user_name;
+      this.id = json._id;
+      this.userName = json.userName;
       if (json.date) {
         this.date = new Date(json.date);
       }

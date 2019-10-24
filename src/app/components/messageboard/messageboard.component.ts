@@ -41,6 +41,7 @@ export class MessageboardComponent implements OnInit {
   loadAllMessages() {
     this.messageService.getMessages().subscribe(value => {
       this.messages = Message.toArray(value);
+      console.log('messages',this.messages);
     });
   }
 

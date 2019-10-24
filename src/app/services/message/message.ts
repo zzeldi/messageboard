@@ -13,8 +13,8 @@ export class Message {
 
   constructor(json?: any) {
     if (json != null) {
-      this.id = json.id;
-      this.userName = json.userName;
+      this.id = json._id;
+      this.userName = json.user_name;
       if (json.date) {
         this.date = new Date(json.date);
       }
