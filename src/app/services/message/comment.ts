@@ -2,15 +2,15 @@
  * Comment class, contains the comments belonged to the message class
  */
 export class Comment {
-  id: string;
+  id: number;
   userName: string;
   date: Date;
   commentText: string;
-  messageId: string;
+  messageId: number;
 
   constructor(json?: any) {
     if (json != null) {
-      this.id = json._id;
+      this.id = json.id;
       this.userName = json.userName;
       if (json.date) {
         this.date = new Date(json.date);

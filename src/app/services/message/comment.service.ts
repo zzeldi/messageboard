@@ -17,7 +17,7 @@ export class CommentService {
    * @param comment
    */
   saveNewComment(comment: Comment): Observable<Message> {
-    return this.http.post<Message>(environment.SERVER_URL + '/api/message_comment/' , comment);
+    return this.http.post<Message>(environment.SERVER_URL + '/api/comments/' , comment);
   }
 
 }

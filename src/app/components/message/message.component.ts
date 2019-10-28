@@ -50,6 +50,7 @@ export class MessageComponent implements OnInit {
       newComment.commentText = this.newCommentText;
       newComment.userName = this.userName;
       newComment.messageId = this.message.id;
+      console.log(newComment);
       this.commentService.saveNewComment(newComment).subscribe(value => {
         this.newCommentText = '';
         this.message = new Message(value);
