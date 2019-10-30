@@ -41,7 +41,6 @@ export class MessageboardComponent implements OnInit {
   loadAllMessages() {
     this.messageService.getMessages().subscribe(value => {
       this.messages = Message.toArray(value);
-      console.log('messages',this.messages);
     });
   }
 
@@ -59,6 +58,7 @@ export class MessageboardComponent implements OnInit {
       // save the message
       this.messageService.saveNewMessage(this.newMessage).subscribe(value => {
         // we will reload the messages - just in case other people has posted messages too
+        //TODO periodically check back if new message has arrived
         this.loadAllMessages();
         this.newMessage = new Message();
 

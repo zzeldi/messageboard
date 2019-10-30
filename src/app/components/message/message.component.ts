@@ -50,10 +50,10 @@ export class MessageComponent implements OnInit {
       newComment.commentText = this.newCommentText;
       newComment.userName = this.userName;
       newComment.messageId = this.message.id;
-      console.log(newComment);
-      this.commentService.saveNewComment(newComment).subscribe(value => {
+      this.commentService.saveNewComment(newComment).subscribe(newComment => {
         this.newCommentText = '';
-        this.message = new Message(value);
+        //TODO periodically check back if new message has arrived
+        this.message.comments.push(newComment);
       });
     } else {
       // required fields are not filled
