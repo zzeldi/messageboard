@@ -1,16 +1,16 @@
 <div class="card  m-2">
 
-  <div class="card-header"><h5>{{message.userName}} at ({{message.date | date:'dd/M/yyyy, hh:mm' }}) </h5></div>
+  <div class="card-header" id="messageheader"><h5>{{message?.userName}} at ({{message?.date | date:'dd/M/yyyy, hh:mm' }}) </h5></div>
 
   <div class="card-body">
     <div class="row">
-      <div class="col border-dark">
-        {{message.message}}
+      <div class="col border-dark" id="messageContainer">
+        {{message?.message}}
       </div>
     </div>
-    <div *ngIf="message.comments.length > 0">
+   <div id="commentListHolder" *ngIf="message?.comments.length > 0">
       <hr/>
-      <div class="row" #comments>
+      <div class="row" #commentsList>
         <div class="col font-weight-bold h7">Comments:</div>
       </div>
       <div class="row" *ngFor="let comment of message.comments">

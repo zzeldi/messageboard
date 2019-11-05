@@ -5,6 +5,7 @@ import {debounceTime} from 'rxjs/operators';
 /**
  * displeys an alert message for 5 sec
  */
+// todo error service
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
