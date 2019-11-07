@@ -46,7 +46,4 @@ describe('AlertComponent', () => {
     //TODO
   })
 
-/*  it('should true to be true', () => {
-    expect(true).toBe(true);
-  })*/
 });

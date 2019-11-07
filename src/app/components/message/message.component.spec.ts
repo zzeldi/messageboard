@@ -35,8 +35,6 @@ describe('MessageComponent', () => {
     testMessage = new Message();
     testMessage.userName = 'TestUser';
     testMessage.message = 'TestMessage';
-
-
     testMessage.comments = [];
 
     mockCommentService = jasmine.createSpyObj(['saveNewComment']);
@@ -57,25 +55,4 @@ describe('MessageComponent', () => {
     expect(fixture.debugElement.query(By.css('#messageContainer')).nativeElement.textContent).toContain('TestMessage');
   })
 
- /* it('should be true fake async ', () => {
-    fakeAsync(() => {
-      fixture.componentInstance.message = testMessage;
-      console.log(testMessage);
-      fixture.detectChanges();
-      tick();
-      expect(true).toBe(true);
-    })
-    ;
-  })
-
-  it('should be true async ', async(() => {
-
-    fixture.componentInstance.message = testMessage;
-    console.log(fixture.componentInstance.message);
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(true).toBe(true);
-    });
-  }));
-*/
 });
