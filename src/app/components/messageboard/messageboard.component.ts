@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Message} from '../../services/message/message';
 import {MessageService} from '../../services/message/message.service';
+import {AlertService} from "../../services/alert.service";
 
 @Component({
   selector: 'app-messageboard',
@@ -24,9 +25,10 @@ export class MessageboardComponent implements OnInit {
    */
   storedUsername: string;
 
-  errorMessage = '';
 
-  constructor(private messageService: MessageService) {
+
+  constructor(private messageService: MessageService,
+              private alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -66,7 +68,7 @@ export class MessageboardComponent implements OnInit {
     } else {
       // required fields are not filled
       this.formError = true;
-      this.errorMessage = 'Required fields are missing!';
+      this.alertService.showAlert('Required fields are missing!')
     }
   }
 
@@ -83,6 +85,6 @@ export class MessageboardComponent implements OnInit {
    */
   onUserNameMissingError() {
     this.userNameError = true;
-    this.errorMessage = 'No user name was given!';
+    this.alertService.showAlert('No user name was given!')
   }
 }

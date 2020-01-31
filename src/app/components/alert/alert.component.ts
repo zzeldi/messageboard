@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
+import {debounceTime, takeUntil} from 'rxjs/operators';
+import {AlertService} from "../../services/alert.service";
 
 /**
  * displeys an alert message for 5 sec
@@ -11,19 +12,21 @@ import {debounceTime} from 'rxjs/operators';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.css']
 })
-export class AlertComponent implements OnInit {
-
-  @Input('errorMessage') set setMessage(msg: string) {
-    this.errorMessage = msg;
-    this._hide.next(msg);
-
-  }
+export class AlertComponent implements OnInit, OnDestroy {
 
 
-  errorMessage: string;
+
+  private readonly onDestroy = new Subject<void>();
+   errorMessage: string;
 
   private _hide = new Subject<string>();
-  constructor() {
+
+  constructor(private alertService: AlertService) {
+    alertService.alert$
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe(alert => {
+        this.errorMessage = alert;
+      })
   }
 
   ngOnInit() {
@@ -31,6 +34,12 @@ export class AlertComponent implements OnInit {
     this._hide.subscribe((message) => this.errorMessage = message);
     this._hide.pipe(
       debounceTime(5000)
-    ).subscribe(() => this.errorMessage = null);  }
+    ).subscribe(() => this.errorMessage = null);
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy.next();
+  }
+
 
 }
